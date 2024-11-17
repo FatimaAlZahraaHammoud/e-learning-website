@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import axios from "axios";
-import imagePath from "../images/e-learning3.png";
 import "../styles/base/utilities.css"
 import "../styles/login.css"
 import {useNavigate} from "react-router-dom";
