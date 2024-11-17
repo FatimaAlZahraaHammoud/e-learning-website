@@ -1,0 +1,73 @@
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #665C8A; /* Match the purple shade in the image */
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+nav .logo {
+    height: 40px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li:hover {
+    color: #E0E0E0; /* Slight hover effect */
+}
+
+.navbar-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-btns button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar-btns .login {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.navbar-btns .login:hover {
+    background-color: white;
+    color: #665C8A;
+}
+
+.navbar-btns .signup {
+    background-color: black;
+    color: white;
+}
+
+.navbar-btns .signup:hover {
+    background-color: white;
+    color: black;
+}
