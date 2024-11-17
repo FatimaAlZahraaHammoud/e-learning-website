@@ -5,7 +5,7 @@ import "../styles/login.css"
 import {useNavigate} from "react-router-dom";
 
 const Login = () =>{
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [loginForm, setLoginForm] = useState("");
     const [error, setError] = useState("");
 
@@ -42,9 +42,9 @@ const Login = () =>{
                             const data = new FormData();
                             data.append("email", loginForm.email);
                             data.append("password", loginForm.password);
-                            axios.post("http://localhost/FSW-SE-Factory/e_learning_website/Server/login.php", data).then((res)=>{
+                            axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/login.php", data).then((res)=>{
                                 localStorage.setItem("userId", res.data.UserId);
-                                //navigate("/Home");
+                                navigate("/Home");
                             }).catch((error) =>{
                                 setError(error.response.data.status);
                             })

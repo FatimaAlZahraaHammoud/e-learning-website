@@ -4,7 +4,7 @@ import "../styles/signup.css";
 import {useNavigate} from "react-router-dom";
 
 const Signup = () =>{
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [signupForm, setsignupForm] = useState("");
     const [error, setError] = useState("");
 
@@ -53,9 +53,9 @@ const Signup = () =>{
                             data.append("username", signupForm.username);
                             data.append("email", signupForm.email);
                             data.append("password", signupForm.password);
-                            axios.post("http://localhost/FSW-SE-Factory/e_learning_website/Server/signup.php", data).then((res)=>{
+                            axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/signup.php", data).then((res)=>{
                                 localStorage.setItem("userId", res.data.UserId);
-                                //navigate("/Home");
+                                navigate("/Home");
                             }).catch((error) =>{
                                 setError(error.response.data.status);
                             })
@@ -63,7 +63,7 @@ const Signup = () =>{
                     >
                     Register
                     </button>
-                    <p className="login-text">Already have an account? <a href="/login" className="login-link">Login</a></p>
+                    <p className="login-text">Already have an account? <a href="/" className="login-link">Login</a></p>
                     {error && <p>{error}</p>}
                 </div>
             </div>
