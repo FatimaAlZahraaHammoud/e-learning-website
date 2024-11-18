@@ -2,7 +2,7 @@ nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #665C8A; /* Match the purple shade in the image */
+    background-color: #4A5FD5;
     padding: 10px 20px;
     font-family: Arial, sans-serif;
     color: white;
@@ -33,7 +33,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-    color: #E0E0E0; /* Slight hover effect */
+    color: #E0E0E0;
 }
 
 .navbar-btns {

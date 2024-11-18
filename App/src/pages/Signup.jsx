@@ -54,8 +54,13 @@ const Signup = () =>{
                             data.append("email", signupForm.email);
                             data.append("password", signupForm.password);
                             axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/signup.php", data).then((res)=>{
-                                localStorage.setItem("userId", res.data.UserId);
-                                navigate("/Home");
+                                //localStorage.setItem("userId", res.data.UserId);
+                                if (res.data.status === "Register successful") {
+                                    navigate("/Home");
+                                } else {
+                                    setError(res.data.message);
+                                }
+                
                             }).catch((error) =>{
                                 setError(error.response.data.status);
                             })
@@ -63,7 +68,7 @@ const Signup = () =>{
                     >
                     Register
                     </button>
-                    <p className="login-text">Already have an account? <a href="/" className="login-link">Login</a></p>
+                    <p className="login-text">Already have an account? <button onClick={() => navigate("/")} className="login-link" type="button">Login</button></p>
                     {error && <p>{error}</p>}
                 </div>
             </div>

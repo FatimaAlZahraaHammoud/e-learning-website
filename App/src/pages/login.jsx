@@ -43,8 +43,14 @@ const Login = () =>{
                             data.append("email", loginForm.email);
                             data.append("password", loginForm.password);
                             axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/login.php", data).then((res)=>{
-                                localStorage.setItem("userId", res.data.UserId);
-                                navigate("/Home");
+                                if(res.data.status === "Login Succesful"){
+                                    localStorage.setItem("userId", res.data.UserId);
+                                    navigate("/Home");
+                                }
+                                else{
+                                    setError(res.data.status);
+                                }
+                                
                             }).catch((error) =>{
                                 setError(error.response.data.status);
                             })
@@ -52,7 +58,7 @@ const Login = () =>{
                     >
                     Login
                     </button>
-                    <p className="signup-text">Don't have an account? <a href="/signup" className="signup-link">Signup</a></p>
+                    <p className="signup-text">Don't have an account? <a onClick={() => {navigate("/signup");}} className="signup-link">Signup</a></p>
                     {error && <p>{error}</p>}
                 </div>
             </div>
