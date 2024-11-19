@@ -1,9 +1,22 @@
 <?php
 
     include "connection.php";
+    include "vendor/autoload.php";
 
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    use Firebase\JWT\JWT;
+
+    $secretKey = "FatimaSecretKeyy";
+
+    $data = json_decode(file_get_contents("php://input"), true);
+    $email = $_POST["email"] ?? null;
+    $password = $_POST["password"] ?? null;
+
+    if (empty($email) || empty(($password))) {
+        echo json_encode([
+            "status"=> "error",
+            "message"=> "Credentials are required"
+        ]);
+    }
 
     $query = $connection->prepare("SELECT * FROM users WHERE email = ?");
     $query->bind_param("s", $email);
@@ -17,15 +30,27 @@
         $check = password_verify($password, hash: $user["password"]);
 
         if ($check) {
+
+            $payload = [
+                "user_id"=> $user["user_id"],
+                "role" => $user["role"],
+            ];
+
+            $token = JWT::encode($payload, $secretKey, "HS256");
+
             echo json_encode([
                 "status" => "Login Succesful",
+                "message" => "Login is Succesful",
                 "user" => $user,
-                "userId" => $user["userId"], 
+                "userId" => $user["user_id"], 
+                "access_token" => $token
             ]);
+            
         } else {
             http_response_code(404);
             echo json_encode([
-                "status" => "Invalid Credentials",
+                "status" => "Incorrect password",
+                "message" => "The email is not found"
             ]);
         }
     } else {
@@ -33,6 +58,7 @@
 
         echo json_encode([
             "status" => "User not found",
+            "message" => "User not found"
         ]);
     }
 
