@@ -119,3 +119,109 @@ body{
     }
 }
 
+
+.course-card {
+    width: 300px;
+    background: #eef2ff;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#eef2ff, #eef2ff),
+        linear-gradient(to right, #4a5fd5, #6f81e6);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    overflow: hidden;
+    margin: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    margin: 0;
+    padding: 0;
+}
+
+.course-image {
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+    text-align: left;
+    padding: 16px; 
+}
+
+
+.title-like-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.course-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #293362;
+    margin: 12px 0;
+    flex-grow: 1;
+}
+
+.like-btn {
+    margin-left: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: #6f81e6;
+}
+
+
+.like-btn:hover {
+    transform: scale(1.2);
+    color: #f44336;
+}
+
+
+.course-instructor {
+    font-size: 0.9rem;
+    color: #4a5fd5;
+    margin-bottom: 16px;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    color: #6f81e6;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.students {
+    color: #7986d5;
+}
+
+.start-now-btn {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #4a5fd5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.start-now-btn:hover {
+    background: #6f81e6;
+}
