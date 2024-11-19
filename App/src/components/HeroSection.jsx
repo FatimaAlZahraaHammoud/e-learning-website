@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import axios from "axios";
 import heroImage from "../assets/images/Hand coding-amico.svg";
 import searchIcon from "../assets/icons/search-icon.svg";
 import "../styles/style.css"
@@ -23,7 +22,7 @@ const HeroSection = () => {
             </div>
 
             <div className="hero-image">
-                <img src={heroImage} alt="" />
+                <img src={heroImage} alt="e-learning image" />
             </div>
         </div>
 
