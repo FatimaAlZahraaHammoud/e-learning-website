@@ -2,14 +2,23 @@
     include "connection.php";
     include "vendor/autoload.php";
 
+    header("Access-Control-Allow-Origin: http://localhost:3000");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS, REQUEST");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
     use Firebase\JWT\JWT;
+
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+        http_response_code(200);
+        exit();
+    }
 
     $secretKey = "FatimaSecretKeyy";
     $data = json_decode(file_get_contents("php://input"), true);
 
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $username = $data["username"] ?? null;
+    $email = $data["email"] ?? null;
+    $password = $data["password"] ?? null;
 
     if (empty($username) || empty($email) || empty($password)) {
         echo json_encode([

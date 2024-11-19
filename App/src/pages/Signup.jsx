@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { requestApi } from "../utils/request";
+import { requestMethods } from "../utils/enums/requestsMethod";
 import "../styles/signup.css";
 import {useNavigate} from "react-router-dom";
 
@@ -47,23 +49,24 @@ const Signup = () =>{
                         }} 
                     />
                     <button className="signup-btn"
-                        onClick={() => {
+                        onClick={async() => {
                             setError("");
-                            const data = new FormData();
-                            data.append("username", signupForm.username);
-                            data.append("email", signupForm.email);
-                            data.append("password", signupForm.password);
-                            axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/signup.php", data).then((res)=>{
-                                //localStorage.setItem("userId", res.data.UserId);
-                                if (res.data.status === "Register successful") {
-                                    navigate("/Home");
-                                } else {
-                                    setError(res.data.message);
-                                }
-                
-                            }).catch((error) =>{
-                                setError(error.response.data.status);
-                            })
+                            try{
+                                const result = await requestApi({
+                                    body:{
+                                        username : signupForm.username,
+                                        email : signupForm.email,
+                                        password : signupForm.password
+                                    },
+                                    method: requestMethods.POST,
+                                    route: '/signup'
+                                })
+                                localStorage.setItem("token", result.access_token);
+                                navigate("/Home");
+                            }
+                            catch(error){
+                                setError("Something error happened");
+                            };
                         }}
                     >
                     Register

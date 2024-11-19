@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
 import "../styles/base/utilities.css"
+import { requestApi } from "../utils/request";
+import {requestMethods} from "../utils/enums/requestsMethod";
 import "../styles/login.css"
 import {useNavigate} from "react-router-dom";
 
@@ -37,23 +39,23 @@ const Login = () =>{
                         }} 
                     />
                     <button className="login-btn"
-                        onClick={() => {
+                        onClick={async () => {
                             setError("");
-                            const data = new FormData();
-                            data.append("email", loginForm.email);
-                            data.append("password", loginForm.password);
-                            axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/login.php", data).then((res)=>{
-                                if(res.data.status === "Login Succesful"){
-                                    localStorage.setItem("userId", res.data.UserId);
-                                    navigate("/Home");
-                                }
-                                else{
-                                    setError(res.data.status);
-                                }
-                                
-                            }).catch((error) =>{
-                                setError(error.response.data.status);
-                            })
+                            try{
+                                const result = await requestApi({
+                                    body: {
+                                      email: loginForm.email,
+                                      password: loginForm.password,
+                                    },
+                                    method: requestMethods.POST,
+                                    route: "/login",
+                                });
+                                localStorage.setItem("token", result.access_token);
+                                navigate("/home");
+                            }
+                            catch (error) {
+                                console.log("something wrong happend");
+                            }
                         }}
                     >
                     Login

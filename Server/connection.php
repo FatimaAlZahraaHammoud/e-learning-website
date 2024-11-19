@@ -2,7 +2,7 @@
 
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Origin: Content-Type");
-    header("Access-Control-Allow-Methods: POST, GET");
+    header("Access-Control-Allow-Methods: POST, GET, REQUEST");
 
     $host = "localhost";
     $dbuser ="root";
