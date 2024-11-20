@@ -31,7 +31,11 @@
                         'title' => $course['title'],
                         'image' => $course['image'],
                         'students' => $course['number_of_students'],
-                        'instructor' => $course['instructor_name']
+                        'instructor' => $course['instructor_name'],
+                        'description' => $course['description'],
+                        'video_hours' => $course['video_hours'],
+                        'article_count'=> $course['article_count'],
+                        'downloadable_resources'=> $course['downloadable_resources'],
                     ];
                 }
             }

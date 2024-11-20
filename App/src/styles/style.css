@@ -131,7 +131,14 @@ body{
     background-clip: padding-box, border-box;
     overflow: hidden;
     margin: 16px;
+    cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.7s;
+}
+
+.course-card:hover{
+    transform: scale(1.04);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-header {
@@ -177,7 +184,7 @@ body{
 
 .like-btn:hover {
     transform: scale(1.2);
-    color: #f44336;
+    fill: #6f81e6;
 }
 
 
@@ -198,9 +205,16 @@ body{
 .rating {
     display: flex;
     align-items: center;
-    color: #6f81e6;
+    color: #d3d3d3;;
     font-weight: bold;
+    font-size: 18px;
     margin-right: 8px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.rating i:active{
+    color: #FFD700;
 }
 
 .students {
