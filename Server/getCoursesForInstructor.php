@@ -4,7 +4,6 @@
     require "vendor/autoload.php";
     
     header('Content-Type: application/json');
-
     header("Access-Control-Allow-Origin: http://localhost:3000");
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS, REQUEST");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -12,7 +11,7 @@
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
 
-    $secretKey = "FatimaSecretKeyy";
+    /*$secretKey = "FatimaSecretKeyy";
     $headers = getallheaders();
     $jwt = $headers["Authorization"];
 
@@ -30,16 +29,18 @@
     }
 
 
-    $id = $payload->userId;
+    $id = $payload->userId;*/
 
-    if (!$id) {
+    $instructor_id = $_POST["instructor_id"];
+
+    if (!$instructor_id) {
         http_response_code(400);
         echo json_encode(['error' => 'Instructor ID is required']);
         exit;
     }
 
     $coursesQuery = $connection->prepare("select c.*, u.name as instructor_name from courses c INNER JOIN users u on c.instructor_id = u.user_id where c.instructor_id = ?");
-    $coursesQuery->bind_param("i", $id);
+    $coursesQuery->bind_param("i", $instructor_id);
     $coursesQuery->execute();
     $result = $coursesQuery->get_result();
 
