@@ -8,7 +8,16 @@
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS, REQUEST");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-    $coursesQuery = $connection->prepare("select c.*, u.name as instructor_name from courses c INNER JOIN users u on c.instructor_id = u.user_id where c.section_id = $sectionId");
+    $instructor_id = $_POST["instructor_id"] ?? null;
+
+    if (!$instructor_id) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Instructor ID is required']);
+        exit;
+    }
+
+    $coursesQuery = $connection->prepare("select c.*, u.name as instructor_name from courses c INNER JOIN users u on c.instructor_id = u.user_id where c.instructor_id = ?");
+    $coursesQuery->bind_param("i", $instructor_id);
     $coursesQuery->execute();
     $result = $coursesQuery->get_result();
 
@@ -26,7 +35,7 @@
         echo json_encode($courses);
     }
     else{
-        echo json_encode(['error'=> 'no courses found']);
+        echo json_encode(['error'=> 'No courses found']);
     }
 
 ?>
