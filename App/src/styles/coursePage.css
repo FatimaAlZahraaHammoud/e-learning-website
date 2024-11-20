@@ -1,0 +1,133 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Course Page Layout */
+.course-page {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 20%;
+    background: #4a5fd5; /* Matches the preferred color palette */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar button {
+    background: transparent;
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    border: none;
+    text-align: left;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #f8f9fa;
+}
+
+.sidebar button:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.sidebar button.active {
+    background-color: white;
+    color: #4a5fd5;
+    font-weight: bold;
+}
+
+/* Content Section Styling */
+.content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    background: #ffffff;
+}
+
+.content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #4a5fd5;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.content button {
+    background-color: #4a5fd5;
+    color: white;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 8px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.content button:hover {
+    background-color: #354db3;
+}
+
+/* Scrollbar Styling for Content Section */
+.content {
+    scrollbar-width: thin;
+    scrollbar-color: #4a5fd5 #f8f9fa;
+}
+
+.content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #4a5fd5;
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: #f8f9fa;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .course-page {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0.5rem;
+    }
+
+    .sidebar button {
+        flex: 1;
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+}
