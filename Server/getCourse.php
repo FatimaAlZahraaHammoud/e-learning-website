@@ -8,10 +8,10 @@
 
     $secretKey = ""*/
 
-    $course_id = $_POST['course_id'];
+    $course_title = $_POST['course_title'] ?? null;
 
-    $query = $connection->prepare("select * from courses where id = ?");
-    $query->bind_param("i", $course_id);
+    $query = $connection->prepare("select * from courses where title = ?");
+    $query->bind_param("s", $course_title);
     $query->execute();
     $result = $query->get_result();
 
@@ -27,7 +27,7 @@
     else{
         echo json_encode([
             "status"=> "error",
-            "message"=> "course id not found",
+            "message"=> "course title not found",
         ]);
     }
 

@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from "react";
 import "../styles/style.css";
+import { useNavigate } from "react-router-dom";
 
 
 
 const CourseCard = ({cardImage, courseTitle, courseInstructor , numberOfStudents}) => {
+    const navigate = useNavigate();
 
     return (
-        <div className="course-card">
+        <div className="course-card"
+            onClick={() =>{
+                navigate(`/course/${courseTitle}`)
+            }}
+        >
             <div className="card-header">
                 <img
                 src={cardImage}
