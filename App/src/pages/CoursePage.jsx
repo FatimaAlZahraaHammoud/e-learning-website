@@ -1,7 +1,7 @@
 import React from "react";
 import CourseDetails from "../components/CourseDetails";
 
-const CourseDetailsPage = () => {
+const CoursePage = () => {
     return(
         <div>
             <CourseDetails />
@@ -9,4 +9,4 @@ const CourseDetailsPage = () => {
     );
 };
 
-export default CourseDetailsPage;
+export default CoursePage;

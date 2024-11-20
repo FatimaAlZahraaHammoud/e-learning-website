@@ -5,29 +5,41 @@ import cardImage2 from "../assets/images/c++_course.png"
 import "../styles/base/utilities.css";
 import "../styles/style.css";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const Courses = () => {
 
-    const [courses, setCourses] = useState([]); 
+    const [courses, setCourses] = useState([]);
     
-
     useEffect(() => {
-        const fetchCourses = async () =>{
-            try{
-            
-                const response = await axios.get("http://localhost/FSW-SE-Factory/e-learning-website/Server/getCoursesForInstructor.php", {
-                    headers: {
-                        Authorization: localStorage.token,
-                    },
-                });
-                console.log(response.data);
-                setCourses(response.data);
+        const token = localStorage.getItem("token");
+    
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            const role = decodedToken.role; 
+
+            const fetchCourses = async () =>{
+                try{
+                    let response;
+                    if (role === "instructor"){
+                        response = await axios.get("http://localhost/FSW-SE-Factory/e-learning-website/Server/getCoursesForInstructor.php", {
+                            headers: {
+                                Authorization: localStorage.token,
+                            },
+                        });
+                    }
+                    else if (role === "student"){
+
+                    }
+                    console.log(response.data);
+                    setCourses(response.data);
+                }
+                catch(error){
+                    console.error("Error fetching data:", error);
+                }
             }
-            catch(error){
-                console.error("Error fetching data:", error);
-            }
+            fetchCourses();
         }
-        fetchCourses();
     }, []);
 
     return (
