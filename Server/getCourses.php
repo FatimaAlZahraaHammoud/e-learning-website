@@ -19,7 +19,7 @@
         while ($section = $sectionsResult->fetch_assoc()) {
             $sectionId = $section['id'];
 
-            $coursesQuery = $connection->prepare("select c.*, u.name from courses c INNER JOIN users u on c.instructor_id = u.user_id where c.section_id = $sectionId");
+            $coursesQuery = $connection->prepare("select c.*, u.name as instructor_name from courses c INNER JOIN users u on c.instructor_id = u.user_id where c.section_id = $sectionId");
             $coursesQuery->execute();
             $result = $coursesQuery->get_result();
 
@@ -31,7 +31,7 @@
                         'title' => $course['title'],
                         'image' => $course['image'],
                         'students' => $course['number_of_students'],
-                        'instructor' => $course['instructor_id']
+                        'instructor' => $course['instructor_name']
                     ];
                 }
             }
