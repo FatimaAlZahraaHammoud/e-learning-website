@@ -26,9 +26,32 @@ const Posting = ({courseId}) => {
         }
         catch(error){
             console.error("Error posting announcement:", error);
-        }
-        
+        } 
     }
+
+    const handlePostAssignment = async() => {
+        try{
+            const data = new FormData();
+            data.append("title", assignment.title);
+            data.append("description", assignment.description);
+            data.append("dueDate", assignment.dueDate);
+            data.append("course_id", courseId);
+            const response = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/createAnnouncement.php", data, {
+                headers: localStorage.token
+            });
+
+            if(response.data.status === "success"){
+                console.log("posted successfully");
+                setSelectedForm("");
+                setAssignment({title: "", description: "", dueDate: ""});
+            }
+        }
+        catch(error){
+            console.error("Error posting assignment:", error);
+        }
+    }
+
+    
 
     return(
         <div className="posting-container">
@@ -80,7 +103,7 @@ const Posting = ({courseId}) => {
                     <form className="assignment-form" 
                         onSubmit={(e) => {
                             e.preventDefault();
-
+                            handlePostAssignment();
                         }}
                     >
                         <h3>Add Assignment</h3>
