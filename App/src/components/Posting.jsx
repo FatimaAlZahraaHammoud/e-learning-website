@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const Posting = ({courseId}) => {
@@ -7,7 +8,27 @@ const Posting = ({courseId}) => {
     const [assignment, setAssignment] = useState({ title: "", description: "", dueDate: "" });
 
 
-    
+    const handlePostAnnouncement = async() => {
+        try{
+            const data = new FormData();
+            data.append("title", announcement.title);
+            data.append("content", announcement.content);
+            data.append("course_id", courseId);
+            const response = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/createAnnouncement.php", data, {
+                headers: localStorage.token
+            });
+
+            if(response.data.status === "success"){
+                console.log("posted successfully");
+                setSelectedForm("");
+                setAnnouncement({title: "", content: ""});
+            }
+        }
+        catch(error){
+            console.error("Error posting announcement:", error);
+        }
+        
+    }
 
     return(
         <div className="posting-container">
@@ -29,7 +50,7 @@ const Posting = ({courseId}) => {
                     <form className="announcement" 
                         onSubmit={(e) => {
                             e.preventDefault();
-
+                            handlePostAnnouncement();
                         }}
                     >
                         <h3>Add Announcement</h3>
