@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/SidebarInstructor";
+import Sidebar from "../components/Sidebar";
 import Dashboard from "../components/Dashboard";
 import Students from "../components/Students";
 import { useParams } from "react-router-dom";
