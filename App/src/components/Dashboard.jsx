@@ -39,7 +39,72 @@ const Dashboard = ({course_id}) => {
 
     return (
         <div className="dashboard-container">
-            
+            <div className="dashboard-section">
+                <div className="posting-container">
+                    <div className="posting-header"> 
+                        <h2>Post Conetnt</h2>
+                        <div className="add-icons">
+                            <div className="add-item" onClick={() => setSelectedForm("announcement")}>
+                                ➕ Add Announcement
+                            </div>
+                            <div className="add-item" onClick={() => setSelectedForm("assignment")}>
+                                ➕ Add Assignement
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {/* Announcements */}
+                <h3>Announcements</h3>
+                <div className="announcements-list">
+                <h3>Announcements</h3>
+                {announcements.length > 0 ? (
+                    announcements.map((announcement, index) => (
+                        <div key={announcement.id || `announcement-${index}`} className="card">
+                        <h4>{announcement.title}</h4>
+                        <p>{announcement.content}</p>
+                        <span>Posted on: {new Date(announcement.created_at).toLocaleString()}</span>
+                        </div>
+                    ))
+                ) : (
+                    <p>No announcements posted yet.</p>
+                )}
+                </div>
+
+                {/* Assignments */}
+                <div className="assignments-list">
+                    <h3>Assignments</h3>
+                    {assignments.length > 0 ? (
+                        assignments.map((assignment, index) => (
+                            <div key={assignment.id || `assignment-${index}`} className="card">
+                            <h4>{assignment.title}</h4>
+                            <p>{assignment.description}</p>
+                            <span>Due Date: {new Date(assignment.due_date).toLocaleDateString()}</span>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No assignments posted yet.</p>
+                    )}
+                </div>
+
+                {/*Dialogs*/}
+                {selectedForm === "announcement" && (
+                    <AddAnnouncementDialog
+                        onClose={() => setSelectedForm(null)}
+                        onSave={handleAddAnnouncement}
+                        courseId={course_id}
+                    />
+                )}
+
+                {selectedForm === "assignment" && (
+                    <AddAssignmentsDialog
+                        onClose={() => setSelectedForm(null)}
+                        onSave={handleAddAssignment}
+                        courseId={course_id}
+                    />
+                )}
+            </div>
         </div>
     );
 };
