@@ -7,7 +7,6 @@ const Sidebar = ({ setActiveSection }) => {
     return (
         <div className="sidebar">
             <button onClick={() => setActiveSection("dashboard")}>Dashboard</button>
-            <button onClick={() => setActiveSection("posting")}>Posting</button>
             <button onClick={() => setActiveSection("students")}>Students</button>
         </div>
     );

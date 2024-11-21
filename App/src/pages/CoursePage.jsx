@@ -15,7 +15,6 @@ const CoursePage = () => {
             <div className="content">
                 <h1>{courseTitle}</h1>
                 {activeSection === "dashboard" && <Dashboard />}
-                {activeSection === "posting" && <Posting />}
                 {activeSection === "students" && <Students />}
             </div>
         </div>

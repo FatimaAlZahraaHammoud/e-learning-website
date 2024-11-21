@@ -3,6 +3,13 @@
     include "connection.php";
     include "./vendor/autoload.php";
 
+    
+    header('Content-Type: application/json');
+    header("Access-Control-Allow-Origin: http://localhost:3000");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS, REQUEST");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+
     $title = $_POST["title"];
     $content = $_POST["content"];
     $course_id = $_POST["course_id"];
