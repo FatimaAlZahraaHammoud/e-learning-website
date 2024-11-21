@@ -3,6 +3,8 @@ import React, { useState } from "react";
 
 const Posting = ({courseId}) => {
 
+    const token = localStorage.getItem("token");
+
     const [selectedForm, setSelectedForm] = useState("");
     const [announcement, setAnnouncement] = useState({title:"", content:""});
     const [assignment, setAssignment] = useState({ title: "", description: "", dueDate: "" });
@@ -36,7 +38,7 @@ const Posting = ({courseId}) => {
             data.append("description", assignment.description);
             data.append("dueDate", assignment.dueDate);
             data.append("course_id", courseId);
-            const response = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/createAnnouncement.php", data, {
+            const response = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/createAssignment.php", data, {
                 headers: localStorage.token
             });
 
@@ -51,7 +53,11 @@ const Posting = ({courseId}) => {
         }
     }
 
-    
+    const handleCancel = () => {
+        setSelectedForm("");
+        setAnnouncement({title: "", content: ""});
+        setAssignment({title: "", description: "", dueDate: ""});
+    }
 
     return(
         <div className="posting-container">
@@ -94,10 +100,10 @@ const Posting = ({courseId}) => {
                                 }
                             });
                         }}></textarea>
-                        <button >Cancel</button>
+                        <button onClick={handleCancel}>Cancel</button>
                         <button type="submit">Post Announcement</button>
                     </form>
-                )};
+                )}
 
                 {selectedForm === "assignment" && (
                     <form className="assignment-form" 
@@ -107,7 +113,7 @@ const Posting = ({courseId}) => {
                         }}
                     >
                         <h3>Add Assignment</h3>
-                        <input type="text" placeholder="title" required value={announcement.title}
+                        <input type="text" placeholder="title" required value={assignment.title}
                             onChange={(e) => {
                                 setAssignment((prev) =>{
                                     return{
@@ -138,8 +144,8 @@ const Posting = ({courseId}) => {
                             }}
                         />
 
-                        <button >Cancel</button>
-                        <button type="submit">Post Announcement</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                        <button type="submit">Post Assignment</button>
                     </form>
                 )}
             </div>
