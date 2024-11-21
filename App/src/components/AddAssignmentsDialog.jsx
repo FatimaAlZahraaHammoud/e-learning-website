@@ -56,13 +56,10 @@ const AddAssignmentsDialog = ({onClose, onSave, courseId}) => {
                     <input type="date" required value={dueDate} onChange={(e) => setDueDate(e.target.value)}/>
                     <div className="form-buttons">
                         <button type="button" onClick={() => {
-                            onClose;
+                            onClose();
                             setError("");
                         }}>Cancel</button>
-                        <button type="submit" onClick={() =>{
-                            onSave;
-                            setError("");
-                        }}>Submit</button>
+                        <button type="submit">Submit</button>
                     </div>
                     {error && <p>{error}</p>}
                 </form>

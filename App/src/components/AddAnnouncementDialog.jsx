@@ -20,20 +20,30 @@ const AddAnnouncementDialog = ({onClose, onSave, courseId}) => {
             return;
         }
 
+        const currentDate = new Date().toISOString();
+
         try{
             const data = new FormData();
             data.append("title", title);
             data.append("content", content);
             data.append("course_id", courseId);
+            data.append("currentDate", currentDate);
             const response = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/createAnnouncement.php", data, {
-                headers: localStorage.token
+                headers: 
+                {
+                    Authorization: localStorage.token
+                }
             });
 
             if(response.data.status === "success"){
-                onSave({title, content});
+                onSave({title, content, created_at: currentDate});
                 setTitle("");
                 setContent("");
                 setError("");
+                onClose();
+            }
+            else{
+                console.log("error");
             }
         }
         catch(error){
@@ -45,20 +55,17 @@ const AddAnnouncementDialog = ({onClose, onSave, courseId}) => {
         <dialog className="dialog" open>
             <div className="dialog-content">
                 <h3>Add Announcement</h3>
-                <form onSubmit={handleSubmit}>
+                <div className="announcement-details">
                     <input type="text" placeholder="Title" value={title} required onChange={(e) => setTitle(e.target.value)}/>
                     <textarea placeholder="Context" value={content} required onChange={(e) => setContent(e.target.value)}></textarea>
                     <div className="form-buttons">
-                        <button type="button" onClick={() => {
-                            onClose;
+                        <button className="cancel-button" type="button" onClick={() => {
+                            onClose();
                             setError("");
                         }}>Cancel</button>
-                        <button type="submit" onClick={() =>{
-                            onSave;
-                            setError("");
-                        }}>Submit</button>
+                        <button onClick={handleSubmit} className="submit-button">Submit</button>
                     </div>
-                </form>
+                </div>
                 {error && <p>{error}</p>}
             </div>
         </dialog>

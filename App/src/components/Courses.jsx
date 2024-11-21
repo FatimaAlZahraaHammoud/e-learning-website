@@ -50,6 +50,7 @@ const Courses = () => {
                     {courses.map((course) => (
                         <CourseCard
                             key={course.id}
+                            courseId = {course.id}
                             cardImage={course.image}
                             courseTitle={course.title}
                             courseInstructor={course.instructor}

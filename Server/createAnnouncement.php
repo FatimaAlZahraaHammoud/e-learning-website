@@ -10,9 +10,10 @@
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 
-    $title = $_POST["title"];
-    $content = $_POST["content"];
-    $course_id = $_POST["course_id"];
+    $title = $_POST["title"] ?? null;
+    $content = $_POST["content"] ?? null;
+    $course_id = $_POST["course_id"] ?? null;
+    $cuurentDate = $_POST["currentDate"] ?? null;
 
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
@@ -41,12 +42,10 @@
         exit;
     }
 
-    $current_date = date('Y-m-d');
-
     $query = $connection->prepare("insert into announcements (course_id, instructor_id, title, content, created_at) values (?, ?, ?, ?, ?)");
-    $query->bind_param("iisss", $course_id, $id, $title, $content, $current_date);
+    $query->bind_param("iisss", $course_id, $id, $title, $content, $currentDate);
 
-    if ($query->execute() === true) {
+    if ($query->execute()) {
         echo json_encode([
             "status" => "success",
             "message"=> "Announcement added successfully!"

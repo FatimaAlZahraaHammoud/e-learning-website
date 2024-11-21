@@ -9,9 +9,9 @@
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 
-    $course_id = $_GET["course_id"];
+    $course_id = $_POST["course_id"];
 
-    $query = $connection->prepare("select title, description, due_date, created_at created_at from assignments where course_id = ?");
+    $query = $connection->prepare("select id, title, description, due_date, created_at created_at from assignments where course_id = ?");
     $query->bind_param("i", $course_id);
     $query->execute();
     $result = $query->get_result();

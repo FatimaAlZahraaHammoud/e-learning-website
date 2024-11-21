@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const CourseCard = ({cardImage, courseTitle, courseInstructor , numberOfStudents}) => {
+const CourseCard = ({cardImage, courseTitle, courseInstructor , numberOfStudents, courseId}) => {
     const navigate = useNavigate();
 
     return (
         <div className="course-card"
             onClick={() =>{
-                navigate(`/course/${courseTitle}`)
+                navigate(`/course/${courseId}`)
             }}
         >
             <div className="card-header">
