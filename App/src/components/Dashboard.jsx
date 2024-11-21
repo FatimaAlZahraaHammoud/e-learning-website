@@ -16,7 +16,6 @@ const Dashboard = ({course_id}) => {
                 data.append("course_id", course_id);
                 const announcementsResponse = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/getAnnouncements.php",data);
                 const assignmentsResponse = await axios.post("http://localhost/FSW-SE-Factory/e-learning-website/Server/getAssignments.php", data);
-                console.log(announcementsResponse.data);
                 setAnnouncementS(announcementsResponse.data.announcements || []);
                 setAssignments(assignmentsResponse.data.assignments || []);
             }
@@ -42,7 +41,7 @@ const Dashboard = ({course_id}) => {
             <div className="dashboard-section">
                 <div className="posting-container">
                     <div className="posting-header"> 
-                        <h2>Post Conetnt</h2>
+                        <h2>Post Content</h2>
                         <div className="add-icons">
                             <div className="add-item" onClick={() => setSelectedForm("announcement")}>
                                 ➕ Add Announcement
@@ -80,7 +79,8 @@ const Dashboard = ({course_id}) => {
                             <div key={assignment.id || `assignment-${index}`} className="card">
                             <h4>{assignment.title}</h4>
                             <p>{assignment.description}</p>
-                            <span>Due Date: {new Date(assignment.due_date).toLocaleDateString()}</span>
+                            <span>Due Date: {new Date(assignment.due_date).toLocaleDateString()}</span><br></br>
+                            <span>Posted on: {new Date(assignment.created_at).toLocaleString()}</span>
                             </div>
                         ))
                     ) : (

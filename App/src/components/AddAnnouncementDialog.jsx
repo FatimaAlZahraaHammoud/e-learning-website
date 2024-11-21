@@ -55,7 +55,7 @@ const AddAnnouncementDialog = ({onClose, onSave, courseId}) => {
         <dialog className="dialog" open>
             <div className="dialog-content">
                 <h3>Add Announcement</h3>
-                <div className="announcement-details">
+                <div className="dialog-details">
                     <input type="text" placeholder="Title" value={title} required onChange={(e) => setTitle(e.target.value)}/>
                     <textarea placeholder="Context" value={content} required onChange={(e) => setContent(e.target.value)}></textarea>
                     <div className="form-buttons">

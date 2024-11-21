@@ -13,6 +13,7 @@
     $description = $_POST["description"];
     $dueDate = $_POST["dueDate"];
     $course_id = $_POST["course_id"];
+    $curentDate = $_POST["currentDate"] ?? null;
 
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
@@ -41,12 +42,11 @@
         exit;
     }
 
-    $current_date = date('Y-m-d');
+    $query = $connection->prepare("INSERT INTO assignments (course_id, instructor_id, title, description, due_date, created_at) VALUES (?, ?, ?, ?, ?, ?)");
 
-    $query = $connection->prepare("insert into assignments (course_id, instructor_id, title, description, duse_date, created_at) values (?, ?, ?, ?, ?, ?)");
-    $query->bind_param("iissss", $course_id, $id, $title, $description, $dueDate, $current_date);
+    $query->bind_param("iissss", $course_id, $id, $title, $description, $dueDate, $curentDate);
 
-    if ($query->execute() === true) {
+    if ($query->execute()) {
         echo json_encode([
             "status" => "success",
             "message"=> "Assignment added successfully!"
@@ -55,7 +55,8 @@
     else{
         echo json_encode([
             "status" => "error",
-            "message"=> "Failed to add assignment."
+            "message"=> "Failed to add assignment.",
+            "error" => $query->error
         ]);
     }
 

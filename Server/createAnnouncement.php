@@ -13,7 +13,7 @@
     $title = $_POST["title"] ?? null;
     $content = $_POST["content"] ?? null;
     $course_id = $_POST["course_id"] ?? null;
-    $cuurentDate = $_POST["currentDate"] ?? null;
+    $currentDate = $_POST["currentDate"] ?? null;
 
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
