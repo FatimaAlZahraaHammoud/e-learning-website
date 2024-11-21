@@ -4,7 +4,8 @@
     include "./vendor/autoload.php";
 
     $title = $_POST["title"];
-    $content = $_POST["content"];
+    $description = $_POST["description"];
+    $dueDate = $_POST["dueDate"];
     $course_id = $_POST["course_id"];
 
     use Firebase\JWT\JWT;
@@ -36,19 +37,19 @@
 
     $current_date = date('Y-m-d');
 
-    $query = $connection->prepare("insert into announcements (course_id, instructor_id, title, content, created_at) values (?, ?, ?, ?, ?)");
-    $query->bind_param("iisss", $course_id, $id, $title, $content, $current_date);
+    $query = $connection->prepare("insert into assignments (course_id, instructor_id, title, description, duse_date, created_at) values (?, ?, ?, ?, ?, ?)");
+    $query->bind_param("iissss", $course_id, $id, $title, $description, $dueDate, $current_date);
 
     if ($query->execute() === true) {
         echo json_encode([
             "status" => "success",
-            "message"=> "Announcement added successfully!"
+            "message"=> "Assignment added successfully!"
         ]);
     }
     else{
         echo json_encode([
             "status" => "error",
-            "message"=> "Failed to add announcement."
+            "message"=> "Failed to add assignment."
         ]);
     }
 
