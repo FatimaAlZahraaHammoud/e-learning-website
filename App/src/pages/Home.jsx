@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
-import HeroSection from "../components/HeroSection";
-import Courses from "../components/Courses";
+import HeroSection from "../components/common/HeroSection";
+import Courses from "../components/instructor/Courses";
 import { jwtDecode } from "jwt-decode";
-import AllStudents from "../components/AllStudents";
-import Instructors from "../components/Instructors";
-import AllCourses from "../components/AllCourses";
-import Sidebar from "../components/Sidebar";
+import AllStudents from "../components/admin/AllStudents";
+import Instructors from "../components/admin/Instructors";
+import AllCourses from "../components/admin/AllCourses";
+import Sidebar from "../components/common/Sidebar";
 
 export const AdminComponent = () => {
     const [activeSection, setActiveSection] = useState("students");

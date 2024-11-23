@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Dashboard from "../components/Dashboard";
+import Sidebar from "../components/common/Sidebar";
+import Dashboard from "../components/instructor/Dashboard";
 import Students from "../components/Students";
 import { useParams } from "react-router-dom";
 import "../styles/coursePage.css";

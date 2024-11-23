@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import heroImage from "../assets/images/Hand coding-amico.svg";
-import searchIcon from "../assets/icons/search-icon.svg";
-import "../styles/style.css"
+import heroImage from "../../assets/images/Hand coding-amico.svg";
+import searchIcon from "../../assets/icons/search-icon.svg";
+import "../../styles/style.css"
 import {useNavigate} from "react-router-dom";
 
 const HeroSection = () => {

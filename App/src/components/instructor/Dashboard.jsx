@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/dashboard.css"
+import "../../styles/dashboard.css"
 import AddAnnouncementDialog from "./AddAnnouncementDialog";
 import AddAssignmentsDialog from "./AddAssignmentsDialog";
 

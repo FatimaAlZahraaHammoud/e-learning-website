@@ -1,9 +1,8 @@
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import HeroSection from './components/HeroSection';
 import CoursePage from './pages/CoursePage';
 import Home from './pages/Home';
-import Navbar from './components/Navbar';
+import Navbar from './components/common/Navbar';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 

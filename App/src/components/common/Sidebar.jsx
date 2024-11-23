@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../styles/coursePage.css";
+import "../../styles/coursePage.css"
 import { jwtDecode } from "jwt-decode";
 
 const Sidebar = ({ setActiveSection }) => {
